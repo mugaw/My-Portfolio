@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Muhammad Gawad - Creative React & Python Developer. Portfolio showcasing web development projects, UI design, and creative problem-solving." />
+    <meta name="keywords" content="React Developer, Python Developer, Frontend Developer, Web Developer, UI Designer, Muhammad Gawad, MuGaw" />
+    <meta name="author" content="Muhammad Gawad" />
+    <meta name="theme-color" content="#050505" />
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="MuGaw | Muhammad Gawad - Creative Developer" />
+    <meta property="og:description" content="React & Python Developer crafting beautiful digital experiences. View my portfolio of web development projects." />
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/173294530?v=4" />
+    <meta property="og:url" content="https://github.com/mugaw" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MuGaw | Muhammad Gawad - Creative Developer" />
+    <meta name="twitter:description" content="React & Python Developer crafting beautiful digital experiences." />
+    <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/173294530?v=4" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://github.com/mugaw.png" />
+    <link rel="apple-touch-icon" href="https://github.com/mugaw.png" />
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://avatars.githubusercontent.com" />
+    
+    <title>MuGaw | Muhammad Gawad - Creative React & Python Developer</title>
+    
+    <style>
+      /* Critical CSS for initial load */
+      html {
+        background-color: #050505;
+      }
+      body {
+        margin: 0;
+        background-color: #050505;
+        color: #ffffff;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+      #root {
+        min-height: 100vh;
+      }
+      /* Loading state */
+      .loading {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #050505;
+        z-index: 9999;
+      }
+      .loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 2px solid rgba(231, 251, 252, 0.2);
+        border-top-color: #E7FBFC;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <!-- Loading state shown before React hydrates -->
+      <div class="loading">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
