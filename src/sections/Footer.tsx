@@ -42,8 +42,12 @@ const Footer = () => {
               viewport={{ once: true }}
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#E7FBFC] to-[#999] flex items-center justify-center">
-                  <span className="text-[#050505] font-bold text-xl font-['Montserrat']">M</span>
+                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#E7FBFC]/20 group-hover:border-[#E7FBFC]/50 transition-all duration-300">
+                  <img 
+                    src="https://github.com/mugaw.png" 
+                    alt="Muhammad Gawad" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <span className="text-2xl font-bold font-['Montserrat']">
                   Mu<span className="text-[#E7FBFC]">Gaw</span>
@@ -117,10 +121,10 @@ const Footer = () => {
               <ul className="space-y-3">
                 <li>
                   <a
-                    href="mailto:m@elswedy.com"
+                    href="mailto:muhammedgawad@gmail.com"
                     className="text-white/50 hover:text-[#E7FBFC] transition-colors"
                   >
-                    m@elswedy.com
+                    muhammedgawad@gmail.com
                   </a>
                 </li>
                 <li>

@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Github, ExternalLink, Check, Sparkles } from 'lucide-react';
 import { projectsData } from '../store/projectsSlice';
+import { getAssetPath } from '../lib/assets';
 
 interface ProjectDetailProps {
   projectId: string;
@@ -60,7 +61,7 @@ const ProjectDetail = ({ projectId, onBack }: ProjectDetailProps) => {
       {/* Hero Image */}
       <div className="relative h-[50vh] sm:h-[60vh] overflow-hidden">
         <motion.img
-          src={project.image}
+          src={getAssetPath(project.image)}
           alt={project.name}
           className="w-full h-full object-cover"
           initial={{ scale: 1.1 }}
@@ -207,7 +208,7 @@ const ProjectDetail = ({ projectId, onBack }: ProjectDetailProps) => {
                   <div className="relative overflow-hidden rounded-xl bg-[#111] border border-white/5 hover:border-[#E7FBFC]/20 transition-all">
                     <div className="h-40 overflow-hidden">
                       <img
-                        src={otherProject.image}
+                        src={getAssetPath(otherProject.image)}
                         alt={otherProject.name}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />

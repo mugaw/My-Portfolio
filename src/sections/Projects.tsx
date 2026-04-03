@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, ArrowRight } from 'lucide-react';
 import { projectsData } from '../store/projectsSlice';
+import { getAssetPath } from '../lib/assets';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -169,7 +170,7 @@ const Projects = ({ onProjectClick }: ProjectsProps) => {
                   {/* Image */}
                   <div className="relative h-64 sm:h-80 overflow-hidden">
                     <img
-                      src={project.image}
+                      src={getAssetPath(project.image)}
                       alt={project.name}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />

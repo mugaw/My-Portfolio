@@ -1,8 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowDown, Code2, Palette, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { getAssetPath } from '../lib/assets';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -99,6 +100,44 @@ const Hero = () => {
   }, []);
 
   const titleText = 'MUHAMMAD GAWAD';
+  const typewriterWords = [
+    'React & Python Developer',
+    'UI/UX Designer',
+    'Creative Thinker',
+    'Full-Stack Developer',
+    'Pizza Lover 🍕',
+  ];
+
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentText, setCurrentText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  useEffect(() => {
+    const handleType = () => {
+      const fullText = typewriterWords[currentWordIndex];
+      
+      if (!isDeleting) {
+        setCurrentText(fullText.substring(0, currentText.length + 1));
+        setTypingSpeed(150);
+        
+        if (currentText === fullText) {
+          setTimeout(() => setIsDeleting(true), 2000);
+        }
+      } else {
+        setCurrentText(fullText.substring(0, currentText.length - 1));
+        setTypingSpeed(75);
+        
+        if (currentText === '') {
+          setIsDeleting(false);
+          setCurrentWordIndex((prev: number) => (prev + 1) % typewriterWords.length);
+        }
+      }
+    };
+
+    const timer = setTimeout(handleType, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, currentWordIndex, typingSpeed]);
 
   const scrollToProjects = () => {
     const element = document.querySelector('#projects');
@@ -120,9 +159,9 @@ const Hero = () => {
         style={{ clipPath: 'circle(0% at 50% 50%)' }}
       >
         <img
-          src="/images/hero-bg.jpg"
+          src={getAssetPath('/images/hero-bg.jpg')}
           alt="Hero Background"
-          className="w-full h-full object-cover opacity-60"
+          className="w-full h-full object-cover opacity-40 brightness-50"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505]" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-transparent to-[#050505]" />
@@ -130,7 +169,7 @@ const Hero = () => {
 
       {/* Floating Particles */}
       <div className="absolute inset-0 z-10 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(30)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-[#E7FBFC]/30 rounded-full"
@@ -139,13 +178,13 @@ const Hero = () => {
               top: `${Math.random() * 100}%`,
             }}
             animate={{
-              y: [0, -30, 0],
-              opacity: [0.3, 0.8, 0.3],
+              y: [0, -50, 0],
+              opacity: [0.2, 0.6, 0.2],
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: 4 + Math.random() * 3,
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: Math.random() * 5,
             }}
           />
         ))}
@@ -158,16 +197,16 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 animate-glow"
         >
           <Sparkles className="w-4 h-4 text-[#E7FBFC]" />
-          <span className="text-sm text-white/80">React & Python Developer</span>
+          <span className="text-sm text-white/80 font-medium tracking-wider uppercase">Open for collaborations</span>
         </motion.div>
 
         {/* Main Title */}
         <h1
           ref={titleRef}
-          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black font-['Montserrat'] mb-6 tracking-tight"
+          className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black font-['Montserrat'] mb-6 tracking-tighter"
         >
           {titleText.split('').map((char, index) => (
             <span
@@ -180,14 +219,20 @@ const Hero = () => {
           ))}
         </h1>
 
-        {/* Subtitle */}
-        <p
-          ref={subtitleRef}
-          className="text-lg sm:text-xl md:text-2xl text-white/60 mb-4 font-light"
-          style={{ opacity: 0 }}
-        >
-          Creative Developer & UI Designer
-        </p>
+        {/* Dynamic Typewriter Subtitle */}
+        <div className="h-12 sm:h-16 mb-8">
+          <p className="text-2xl sm:text-3xl md:text-4xl text-white font-light tracking-wide flex items-center justify-center gap-2">
+            <span className="text-white/60">I'm a </span>
+            <span className="text-[#E7FBFC] font-semibold min-w-[2ch]">
+              {currentText}
+              <motion.span
+                animate={{ opacity: [1, 0] }}
+                transition={{ duration: 0.8, repeat: Infinity }}
+                className="inline-block w-[2px] h-[0.8em] bg-[#E7FBFC] ml-1"
+              />
+            </span>
+          </p>
+        </div>
 
         {/* Description */}
         <motion.p
